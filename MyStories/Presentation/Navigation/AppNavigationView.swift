@@ -10,13 +10,17 @@ import SwiftUI
 struct AppNavigationView: View {
     @StateObject var coordinator = AppCoordinator()
 
+    private let domainContainer: AppDomainContainer
+
+    init(domainContainer: AppDomainContainer) {
+        self.domainContainer = domainContainer
+    }
+
     var body: some View {
         Group {
             switch coordinator.currentPage {
             case .home:
-                let userStoryRepository = UserStoryRepository()
-                let getUsersUseCase = GetUsersUseCase(userStoryRepository: userStoryRepository)
-                let viewModel = HomeViewModel(getUsersUseCase: getUsersUseCase)
+                let viewModel = HomeViewModel(getUsersUseCase: domainContainer.userStoryUseCase)
                 HomeView(viewModel: viewModel,
                          navigator: coordinator)
             case .userStories(userId: _):

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MyStoriesApp: App {
+
+    let appContainer = AppDIContainer()
+
     var body: some Scene {
         WindowGroup {
-            AppNavigationView()
+            AppNavigationView(domainContainer: appContainer.domainContainer)
         }
     }
 }
