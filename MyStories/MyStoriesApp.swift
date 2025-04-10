@@ -11,10 +11,7 @@ import SwiftUI
 struct MyStoriesApp: App {
     var body: some Scene {
         WindowGroup {
-            let userStoryRepository = UserStoryRepository()
-            let getUsersUseCase = GetUsersUseCase(userStoryRepository: userStoryRepository)
-            let viewModel = HomeViewModel(getUsersUseCase: getUsersUseCase)
-            HomeView(viewModel: viewModel, navigator: nil)
+            AppNavigationView()
         }
     }
 }

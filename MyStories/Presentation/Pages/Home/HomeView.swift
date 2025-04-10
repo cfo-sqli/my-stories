@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol HomeNavigator: AnyObject {
-    func goToUserStory(userId: Int)
+    func goToUserStories(userId: Int)
 }
 
 struct HomeView: View {
@@ -25,7 +25,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             UserStoryListView(state: viewModel.storiesState) { userId in
-                navigator?.goToUserStory(userId: userId)
+                navigator?.goToUserStories(userId: userId)
             }
 
             Spacer()
