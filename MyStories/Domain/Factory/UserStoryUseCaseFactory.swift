@@ -5,13 +5,12 @@
 //  Created by Charlie Fougeray on 10/04/2025.
 //
 
-protocol UserStoryUseCaseFactoryProtocol {
+protocol UserStoryUseCaseFactory {
     func makeUserStoryRepository() -> UserStoryRepositoryProtocol
-    
     func makeGetUsersUseCase() -> GetUsersUseCaseProtocol
 }
 
-extension UserStoryUseCaseFactoryProtocol {
+extension UserStoryUseCaseFactory {
     func makeGetUsersUseCase() -> GetUsersUseCaseProtocol {
         let repository = makeUserStoryRepository()
         return GetUsersUseCase(userStoryRepository: repository)

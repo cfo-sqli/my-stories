@@ -6,11 +6,17 @@
 //
 
 final class AppDomainContainer {
-    private var userStoryUseCaseFactory: UserStoryUseCaseFactoryProtocol {
-        return UserStoryUseCaseDIContainer()
-    }
+    lazy var userStoryUseCase: GetUsersUseCaseProtocol = makeGetUsersUseCase()
+}
 
-    var userStoryUseCase: GetUsersUseCaseProtocol {
-        userStoryUseCaseFactory.makeGetUsersUseCase()
+extension AppDomainContainer: UserStoryUseCaseFactory {
+    func makeUserStoryRepository() -> any UserStoryRepositoryProtocol {
+        makeRepository()
+    }
+}
+
+extension AppDomainContainer: UserStoryRepositoryFactory {
+    func makeRepository() -> UserStoryRepositoryProtocol {
+        UserStoryRepository()
     }
 }
